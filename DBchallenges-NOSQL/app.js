@@ -1,12 +1,11 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
-const PORT = 3000;
-
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello, Node.js!');
+// Set up a basic route
+app.get('/api', (req, res) => {
+  res.send('Welcome to the API!');
 });
 
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
