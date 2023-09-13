@@ -16,6 +16,54 @@ VALUES (1, 'John', 'Doe', 'Math'),
 SHOW TABLES;
 Challenge3:
 -----------
+SELECT * FROM teachers;
+SELECT first_name, subject FROM teachers;
+Challenge4:
+-----------
 
+a. INNER JOIN: Use this type of join to combine data from the students and 
+teachers tables based on the relationship between teacher_id and id. 
+Aim to retrieve all students' names with their corresponding teachers' names.
 
+SELECT students.first_name ,
+teachers.first_name
+FROM students
+INNER JOIN teachers ON
+students.teachers_id = teachers.id;
 
+b. LEFT JOIN (or LEFT OUTER JOIN): This time, ensure that all students are displayed, 
+even if they don't have an associated teacher. 
+If there's no teacher for a student, the teacher's column should display a NULL value.
+
+SELECT students.first_name , teachers.first_name
+FROM students
+LEFT JOIN teachers ON students.teacher_id = teachers.id;
+
+c. RIGHT JOIN (or RIGHT OUTER JOIN): Now, ensure all teachers are listed, 
+whether or not they have associated students. 
+If a teacher doesn't have any associated student, 
+the student's column should display a NULL value.
+
+SELECT students.first_name , teachers.first_name
+FROM students
+RIGHT JOIN teachers ON students.teacher_id = teachers.id;
+
+d. Emulated FULL JOIN (or FULL OUTER JOIN): Although MySQL doesn't support FULL JOIN natively, 
+challenge yourself to emulate its effect. 
+A FULL JOIN aims to retrieve all records from both tables, 
+matching them where available. 
+Where there's no match, the missing side should contain NULL.
+
+SELECT students.first_name AS student_name, teachers.first_name AS teacher_name
+FROM students
+LEFT JOIN teachers ON students.teacher_id = teachers.id
+
+UNION  
+
+SELECT students.first_name AS student_name, teachers.first_name AS teacher_name
+FROM students
+RIGHT JOIN teachers ON students.teacher_id = teachers.id
+WHERE students.id IS NULL;
+
+Challenge5:
+-----------
