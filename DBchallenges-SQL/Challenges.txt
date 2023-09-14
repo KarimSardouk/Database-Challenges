@@ -67,3 +67,29 @@ WHERE students.id IS NULL;
 
 Challenge5:
 -----------
+
+CREATE TABLE authors (
+    AuthorID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    BirthDate DATE
+);
+
+
+CREATE TABLE publishers (
+    PublisherID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255),
+    Country VARCHAR(255)
+);
+
+CREATE TABLE books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(255),
+    ISBN VARCHAR(255),
+    PublishedDate DATE,
+    Genre VARCHAR(255),
+    AuthorID INT,
+    PublisherID INT,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID),
+    FOREIGN KEY (PublisherID) REFERENCES Publishers(PublisherID)
+);
